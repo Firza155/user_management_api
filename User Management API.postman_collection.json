@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "bdd71b88-5b7c-40e6-8514-5e0991337e33",
+		"name": "User Management API",
+		"description": "API ini menyediakan layanan autentikasi dan manajemen data user, meliputi:\n\n- Registrasi dan login user dengan token JWT\n    \n- CRUD data user (hanya dapat diakses dengan token)\n    \n- Upload foto profil (avatar) ke Cloudinary\n    \n- Keamanan tambahan menggunakan CORS dan Helmet\n    \n\nBase URL: [http://localhost:5000/api](http://localhost:5000/api)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49469875",
+		"_collection_link": "https://www.postman.com/firza-mushermansah2015-5123314/workspace/firza-backend/collection/49469875-bdd71b88-5b7c-40e6-8514-5e0991337e33?action=share&source=collection_link&creator=49469875"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Endpoint untuk membuat akun baru.  \nUser wajib mengisi username, email, dan password.  \nPassword akan otomatis di-hash sebelum disimpan ke database."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Endpoint untuk login user yang sudah terdaftar.  \nJika berhasil, server akan mengembalikan token JWT yang digunakan untuk mengakses endpoint lain."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users (Protected)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Menampilkan daftar semua user yang terdaftar.  \nHanya dapat diakses dengan token JWT yang valid."
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Avatar (Protected)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{vault:authorization-secret}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/LENOVO/Downloads/depositphotos_392759400-stock-illustration-plastic-waste-many-isolated-white.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/avatar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"avatar"
+					]
+				},
+				"description": "Mengunggah foto profil (avatar) ke Cloudinary.  \nFile akan dikirim dalam format multipart/form-data.  \nHasil upload akan disimpan di database dalam kolom avatar_url."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{vault:authorization-secret}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"salim_update\",\r\n  \"email\": \"salim_update@mail.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"profile"
+					]
+				},
+				"description": "Mengubah data profil user yang sedang login.  \nHanya bisa mengedit profil miliknya sendiri (bukan user lain).  \nSetiap perubahan akan mencatat waktu updated_at secara otomatis."
+			},
+			"response": []
+		}
+	]
+}
