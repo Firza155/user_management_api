@@ -1,10 +1,11 @@
-#  User Management API
+# User Management API
 
 Project ini adalah RESTful API sederhana untuk **manajemen user** dengan fitur **autentikasi JWT**, **upload avatar ke Cloudinary**, dan **keamanan server menggunakan CORS & Helmet**.
 
 ---
 
-##  Fitur Utama
+## Fitur Utama
+
 - **Autentikasi** (Register & Login menggunakan JWT)
 - **CRUD Data User**
 - **Upload Foto Profil (Avatar)** ke Cloudinary
@@ -17,6 +18,7 @@ Project ini adalah RESTful API sederhana untuk **manajemen user** dengan fitur *
 ---
 
 ## Tech Stack
+
 - **Node.js + Express.js**
 - **PostgreSQL** (pg)
 - **Cloudinary** (upload avatar)
@@ -29,6 +31,7 @@ Project ini adalah RESTful API sederhana untuk **manajemen user** dengan fitur *
 ---
 
 ## Struktur Folder
+
 user_management_api/
 │
 ├── index.js
@@ -50,8 +53,7 @@ user_management_api/
 │ ├── authRoutes.js
 │ └── userRoutes.js
 └── models/
-  └── userModel.js
-
+└── userModel.js
 
 ---
 
@@ -131,3 +133,4 @@ Proyek: Tugas Backend - User Management API
 
 
 
+```
